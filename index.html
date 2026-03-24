@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teamPBK — CI/CD Pipeline</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 48px 56px;
+            max-width: 680px;
+            width: 90%;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2ea44f;
+            color: #fff;
+            font-size: 0.75em;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .badge-docker {
+            background: #0db7ed;
+            margin-left: 8px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin: 16px 0 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.95em;
+            margin-bottom: 36px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.12);
+            margin: 28px 0;
+        }
+
+        .section-title {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 16px;
+        }
+
+        .member {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .member:last-child { border-bottom: none; }
+
+        .num {
+            width: 32px; height: 32px;
+            background: rgba(46,164,79,0.2);
+            border: 1px solid rgba(46,164,79,0.4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85em; font-weight: 700; color: #2ea44f;
+            flex-shrink: 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .info-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+        .info-label {
+            font-size: 0.72em;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .info-value {
+            font-size: 0.92em;
+            font-weight: 600;
+            color: #2ea44f;
+        }
+
+        .version-tag {
+            display: inline-block;
+            background: rgba(13,183,237,0.15);
+            border: 1px solid rgba(13,183,237,0.3);
+            color: #0db7ed;
+            font-size: 0.8em;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin-top: 12px;
+        }
+
+        footer {
+            margin-top: 32px;
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="badge">✓ GitHub Actions</span>
+        <span class="badge badge-docker">🐳 Docker Hub</span>
+
+        <h1>Команда teamPBK</h1>
+        <p class="subtitle">Лабораторна робота №5 — CI/CD Pipeline + Watchtower</p>
+
+        <div class="section-title">Склад команди</div>
+        <div class="member">
+            <div class="num">1</div>
+            <div class="name">Панащук Роман Андрійович</div>
+        </div>
+        <div class="member">
+            <div class="num">2</div>
+            <div class="name">Биковська Олександра Ігорівна</div>
+        </div>
+        <div class="member">
+            <div class="num">3</div>
+            <div class="name">Кизим Єлизавета Констянтинівна</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-title">Інфраструктура</div>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">CI/CD</div>
+                <div class="info-value">GitHub Actions</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Registry</div>
+                <div class="info-value">Docker Hub</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Auto-deploy</div>
+                <div class="info-value">Watchtower</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Хмара</div>
+                <div class="info-value">AWS EC2 us-east-1b</div>
+            </div>
+        </div>
+
+        <div class="version-tag">deep2end/teampbk-web:latest</div>
+
+        <footer>Автоматично розгорнуто через CI/CD · 2026</footer>
+    </div>
+</body>
+</html>
