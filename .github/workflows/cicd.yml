@@ -1,4 +1,4 @@
-name: CI/CD Pipeline — teamPBK
+name: CI/CD + Terraform — teamPBK
 
 on:
   push:
@@ -22,7 +22,6 @@ jobs:
     name: Build & Push to Docker Hub
     runs-on: ubuntu-latest
     needs: lint
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -44,3 +43,39 @@ jobs:
           tags: |
             deep2end/teampbk-web:latest
             deep2end/teampbk-web:${{ github.sha }}
+
+
+  terraform:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    defaults:
+      run:
+        working-directory: terraform
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.7.0"
+
+      - name: Terraform Init
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: terraform init
+
+      - name: Terraform Plan
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: terraform apply -auto-approve tfplan
